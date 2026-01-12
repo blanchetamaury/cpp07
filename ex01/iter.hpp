@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaury <amaury@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amblanch <amblanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 18:18:54 by amaury            #+#    #+#             */
-/*   Updated: 2025/11/22 18:36:32 by amaury           ###   ########.fr       */
+/*   Updated: 2025/11/26 10:59:53 by amblanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 #define ITER_HPP
 
 template<typename T>
-void    iter(T *array, const int size, T (*fct)(const T)) {
+void    iter(T *array, const int size, void (*fct)(const T&)) {
     for (int i = 0; i < size; i++)
-        array[i] = fct(array[i]);
+        fct(array[i]);
+}
+template<typename T>
+void    iter(T *array, const int size, void (*fct)(T&)) {
+    for (int i = 0; i < size; i++)
+        fct(array[i]);
 }
 
 #endif
